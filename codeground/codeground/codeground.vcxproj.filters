@@ -15,11 +15,26 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="361_A.cpp">
+    <ClCompile Include="B.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="361_B.cpp">
+    <ClCompile Include="A.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="A_N2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="D.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="D_2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="C.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="input.txt" />
   </ItemGroup>
 </Project>
