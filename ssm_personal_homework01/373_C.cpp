@@ -35,6 +35,7 @@ int main()
 		last = cur - 1;
 		if (there == dot)
 		{
+			last--;
 			int updat = there - 1;
 			if (val[updat] == '9')
 			{
