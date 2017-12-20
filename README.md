@@ -1,1 +1,4 @@
-# ProblemSolving
+# Problem Solving
+## 2017.12.20
+- 다시 시작
+- 알고리즘 트레이닝 책에 수록된 문제풀이 예정 (Uva)
