@@ -1,3 +1,7 @@
+/*
+  접미사 배열 SuffixArray를 구하는 알고리즘 코드입니다.
+*/
+
 #include <cstdio>
 #include <algorithm>
 #include <cstring>
@@ -82,6 +86,7 @@ void getSuffixArray(){
   }
 }
 
+// LCP(Longest Common Prefix) 추가 예정
 
 int main(){
   N=strlen(str);
