@@ -1,4 +1,10 @@
 # Problem Solving
-## 2017.12.20
-- 다시 시작
-- 알고리즘 트레이닝 책에 수록된 문제풀이 예정 (Uva)
+
+### Algorithm
+
+#### 2018.10.18  
+
+- 프로젝트 정리 (visual studio file rm)
+- WideLearn 알고리즘 기초 폴더
+- Suffix Array (접미사 배열) [WideLearn]
+
