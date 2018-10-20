@@ -6,7 +6,7 @@
 #include <string>
 using namespace std;
 
-string str1,str2,str;
+char str[500010];
 int len, N,ans, len1;
 vector<int> group;
 vector<int> newGroup;
@@ -65,12 +65,17 @@ void getLCP(){
   }
 }
 int main(){
-  cin>>str1>>str2;
-  len1=str1.size();
-  str=str1+'$'+str2;
-  N=str.size();
+  scanf("%s",str);
+  len1=strlen(str);
+  str[len1]='$';
+  scanf(" %s",str+len1+1);
+  N=strlen(str);
   getSuffixArray();
+  for(int i=0;i<N;i++)
+  {
+    printf("%d\n",suffixArray[i]);
+  }
   getLCP();
-  cout<<ans<<endl;
+  printf("%d\n",ans);
   return 0;
 }
