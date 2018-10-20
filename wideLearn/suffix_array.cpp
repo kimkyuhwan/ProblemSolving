@@ -8,14 +8,14 @@
 #include <vector>
 using namespace std;
 
-#define MAX_SIZE 100010
+#define MAX_SIZE 500010
 
-char str[MAX_SIZE]="mississipi";
+char str[MAX_SIZE];
 int len, N;
-vector<int> group;
-vector<int> newGroup;
-vector<int> suffixArray;
-
+vector<int> group; // 정렬과정에서 필요한 그룹 번호
+vector<int> newGroup; // Group 임시 배열
+vector<int> suffixArray; // 접미사 배열을 사전순으로 정렬했을 시 시작 인덱스를 저장
+vector<int> lcp;
 bool cmp(int i,int j){
   if(group[i]!=group[j]) return group[i] < group[j];
   return group[i+len] < group[j+len];
@@ -31,10 +31,6 @@ void getSuffixArraySlow(){
     group[i]=str[i];
   }
   for(len=1;len<N;len<<=1){
-    for(int i=0;i<N;i++){
-      printf("%d ",group[i]);
-    }
-    puts("");
     sort(suffixArray.begin(),suffixArray.end(),cmp);
     newGroup[suffixArray[0]]=0;
     newGroup[N]=-1;
@@ -84,15 +80,35 @@ void getSuffixArray(){
     }
     group=newGroup;
   }
+  for(int i=0;i<N;i++){
+    group[suffixArray[i]]=i;
+  }
 }
 
 // LCP(Longest Common Prefix) 추가 예정
 
+void getLCP(){
+  lcp.resize(N+1);
+  for(int i=0,k=0;i<N;i++,k=max(0,k-1)){
+    if(group[i]==N-1) continue;
+    for(int j=suffixArray[group[i]+1];str[i+k]==str[j+k];k++);
+    lcp[group[i]]=k;
+  }
+}
 int main(){
+  scanf("%s",str);
   N=strlen(str);
   getSuffixArray();
   for(int i=0;i<N;i++){
-    printf("%s\n",str+suffixArray[i]);
+    printf("%d ",suffixArray[i]+1);
+  }
+  puts("");
+  getLCP();
+  for(int i=0;i<N;i++){
+    if(i)
+      printf("%d ",lcp[i-1]);
+    else
+      printf("x ");
   }
   return 0;
 }
