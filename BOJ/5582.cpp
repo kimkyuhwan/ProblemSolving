@@ -1,50 +1,21 @@
-/*
-  접미사 배열 SuffixArray를 구하는 알고리즘 코드입니다.
-*/
-
+#include <iostream>
 #include <cstdio>
 #include <algorithm>
 #include <cstring>
 #include <vector>
+#include <string>
 using namespace std;
 
-#define MAX_SIZE 500010
-
-char str[MAX_SIZE];
-int len, N;
-vector<int> group; // 정렬과정에서 필요한 그룹 번호
-vector<int> newGroup; // Group 임시 배열
-vector<int> suffixArray; // 접미사 배열을 사전순으로 정렬했을 시 시작 인덱스를 저장
+string str1,str2,str;
+int len, N,ans, len1;
+vector<int> group;
+vector<int> newGroup;
+vector<int> suffixArray;
 vector<int> lcp;
 bool cmp(int i,int j){
   if(group[i]!=group[j]) return group[i] < group[j];
   return group[i+len] < group[j+len];
 }
-
-void getSuffixArraySlow(){
-  suffixArray.resize(N);
-  group.resize(N+1);
-  newGroup.resize(N+1);
-  group[N]=-1;
-  for(int i=0;i<N;i++) {
-    suffixArray[i]=i;
-    group[i]=str[i];
-  }
-  for(len=1;len<N;len<<=1){
-    sort(suffixArray.begin(),suffixArray.end(),cmp);
-    newGroup[suffixArray[0]]=0;
-    newGroup[N]=-1;
-    for(int i=1;i<N;i++){
-       newGroup[suffixArray[i]]=newGroup[suffixArray[i-1]];
-
-      if(cmp(suffixArray[i-1],suffixArray[i]))
-       newGroup[suffixArray[i]]++;
-
-    }
-    group=newGroup;
-  }
-}
-
 void getSuffixArray(){
   vector<int> cnt;
   vector<int> orderToIdx;
@@ -63,7 +34,6 @@ void getSuffixArray(){
     for(int i=0;i<N;i++) cnt[group[min(i+len,N)]]++;
     for(int i=1;i<lim;i++) cnt[i]+=cnt[i-1];
     for(int idx=N-1;idx>=0;idx--) orderToIdx[--cnt[group[min(idx+len,N)]]]=idx;
-
 
     cnt.clear(); cnt.resize(lim);
     for(int i=0;i<N;i++) cnt[group[i]]++;
@@ -84,14 +54,23 @@ void getSuffixArray(){
     group[suffixArray[i]]=i;
   }
 }
-
-// LCP(Longest Common Prefix) 추가 예정
-
 void getLCP(){
   lcp.resize(N+1);
   for(int i=0,k=0;i<N;i++,k=max(0,k-1)){
     if(group[i]==N-1) continue;
-    for(int j=suffixArray[group[i]+1];str[i+k]==str[j+k];k++);
+    int j=suffixArray[group[i]+1];
+    for(;str[i+k]==str[j+k];k++);
     lcp[group[i]]=k;
+    if( (i>len1 && j<len1) || (i < len1 && j > len1)) ans=max(ans,k);
   }
+}
+int main(){
+  cin>>str1>>str2;
+  len1=str1.size();
+  str=str1+'$'+str2;
+  N=str.size();
+  getSuffixArray();
+  getLCP();
+  cout<<ans<<endl;
+  return 0;
 }
