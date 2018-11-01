@@ -75,14 +75,47 @@ namespace klight{
                 return &vc[size()];
             }
     };
+    template <typename T>
+    void swap(T *data,T i,T j){
+        T temp=data[i];
+        data[i]=data[j];
+        data[j]=temp;
+    }
+
+    template<typename T>
+    void quickSort(T *data,T start,T end){
+        if(start>=end) return;
+
+        int pivot = start;
+        int i = pivot +1;
+        int j = end;
+
+        while(i<=j){
+            while(i <= end && data[i] <=data[pivot]) i++;
+            while(j > start && data[j] >= data[pivot]) j--;
+            if(i > j) swap(data,pivot,j);
+            else swap(data,i,j);
+        }
+        quickSort(data,start,j-1);
+        quickSort(data,j+1,end);
+    }
+
+    template<typename T>
+    void sort(T* begin,T* end){
+        printf("%d %d",(void*)begin,(void*)end);
+        int size=(end-begin)/sizeof(T);
+        printf("size : %d\n",size);
+        quickSort(begin,0,size);
+    }
+
 
 }
 int main(){
     klight::_vector<int> vec;
+    vec.push_back(5);
     vec.push_back(4);
     vec.push_back(3);
-    vec.push_back(5);
-    sort(vec.begin(),vec.end());
+    klight::quickSort(vec.begin(),0,2);
     for(int i=0;i<vec.size();i++){
         printf("%d ",vec[i]);
     }

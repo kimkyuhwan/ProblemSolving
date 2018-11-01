@@ -1,13 +1,15 @@
 #include <cstdio>
 int data[]={9,7,6,4,3,2,1,14,25,4};
 
-void swap(int *data,int i,int j){
-    int temp=data[i];
+template <typename T>
+void swap(T *data,T i,T j){
+    T temp=data[i];
     data[i]=data[j];
     data[j]=temp;
 }
 
-void quickSort(int *data,int start,int end){
+template<typename T>
+void quickSort(T *data,T start,T end){
     if(start>=end) return;
 
     int pivot = start;
@@ -22,6 +24,12 @@ void quickSort(int *data,int start,int end){
     }
     quickSort(data,start,j-1);
     quickSort(data,j+1,end);
+}
+
+template<typename T>
+void sort(T* begin,T* end){
+    int size=(end-begin)/sizeof(T);
+    quickSort(begin,0,size);
 }
 
 
