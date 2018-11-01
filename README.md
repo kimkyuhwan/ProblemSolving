@@ -10,3 +10,5 @@
   - BOJ : 2188
 - Sqrt Decomposition(평방 분할)
   - BOJ : 14504
+- MO's Algorithm 
+  - BOJ : 13547
