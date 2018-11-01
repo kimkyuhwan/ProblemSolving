@@ -8,3 +8,5 @@
   - BOJ : 
 - Bipartite Matching (이분 매칭) [WideLearn]
   - BOJ : 2188
+- Sqrt Decomposition(평방 분할)
+  - BOJ : 14504
