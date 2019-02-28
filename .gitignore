@@ -4,6 +4,9 @@
 # Ignore Mac DS_Stroe files
 .DS_Store
 
+# Ignore Input.txt
+input.txt
+
 # User-specific files
 *.suo
 # Prerequisites
